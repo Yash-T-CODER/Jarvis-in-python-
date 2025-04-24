@@ -6,7 +6,7 @@ import wikipedia
 import pywhatkit as kit
 import webbrowser
 import os
-import functools
+
 
 
 speech = sr.Recognizer()
