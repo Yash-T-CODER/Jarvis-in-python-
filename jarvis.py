@@ -7,8 +7,6 @@ import pywhatkit as kit
 import webbrowser
 import os
 
-
-
 speech = sr.Recognizer()
 robot = pyttsx3.init()
 
@@ -48,7 +46,7 @@ def open_website(command):
         site = command.replace("open", "").strip().replace(" ", "")
         url = f"https://www.{site}.com"
         webbrowser.open(url)
-        speak(f"Opening {site} for you, sir.")
+        speak(f"Opening {site} for you,sir.")
     except:
         speak("Sorry, I couldn't open that website.")
 
@@ -67,7 +65,7 @@ def wish_me():
         speak("Good afternoon,sir!")
     else:
         speak("Good evening,sir!")
-    speak("I am your voice assistant, Jarvis. How can I help you today, sir?")
+    speak("I am your voice assistant,Jarvis. How can I help you today,sir?")
 
 # main program
 if __name__ == "__main__":
@@ -75,8 +73,29 @@ if __name__ == "__main__":
     time.sleep(1)
     while True:
         command = listen()
-        
-        if "what is" in command or "who is" in command or "tell me about" in command:
+
+        if "weather" in command:
+            speak("Please say your city name.")
+            city = listen()
+            if city:
+                url = f"https://www.google.com/search?q=weather+in+{city}"
+                speak(f"Showing weather for {city}")
+                webbrowser.open(url)
+
+        elif "news" in command:
+            speak("Opening latest news headlines")
+            webbrowser.open("https://news.google.com")
+
+
+        elif "time" in command:
+            current_time = datetime.datetime.now().strftime("%I:%M %p")
+            speak(f"The time is {current_time}")
+
+        elif "date" in command:
+            date = datetime.datetime.now().strftime("%B %d, %Y")
+            speak(f"Today is {date}")
+
+        elif "what is" in command or "who is" in command or "tell me about" in command:
             try:
                 topic = command.replace("what is", "").replace("who is", "").replace("tell me about", "").strip()
                 info = wikipedia.summary(topic, sentences=2)
@@ -99,17 +118,9 @@ if __name__ == "__main__":
                 search_google_fallback(command)
 
         elif "play music" in command:
-            speak("Playing one of the favourite songs of Yash sir.")
-            music = "D:\\Academic\\python\\python projects\\Naina - Crew 320 Kbps (mp3cut.net).mp3"
+            speak("Playing song,sir.")
+            music = "D:\\Academic\\python\\python projects\\jarvis voice assistant\\repo's\\Jarvis-in-python-\\Naina - Crew 320 Kbps (mp3cut.net).mp3"
             os.startfile(music)
-
-        elif "time" in command:
-            current_time = datetime.datetime.now().strftime("%I:%M %p")
-            speak(f"The time is {current_time}")
-
-        elif "date" in command:
-            date = datetime.datetime.now().strftime("%B %d, %Y")
-            speak(f"Today is {date}")
 
         elif "calculate" in command:
             try:
@@ -119,18 +130,7 @@ if __name__ == "__main__":
             except:
                 speak("Sorry, I couldn't calculate that.")
 
-        elif "weather" in command:
-            speak("Please say your city name.")
-            city = listen()
-            if city:
-                url = f"https://www.google.com/search?q=weather+in+{city}"
-                speak(f"Showing weather for {city}")
-                webbrowser.open(url)
-
-        elif "news" in command:
-            speak("Opening latest news headlines")
-            webbrowser.open("https://news.google.com")
-
+        
         elif "play" in command:
             song = command.replace("play", "").strip()
             speak(f"Playing {song} on YouTube")
@@ -140,4 +140,4 @@ if __name__ == "__main__":
             speak("Thank you for using me, sir. Have a nice day!")
             break
         else :
-            print("Sorry sir, I couldn't understand that. I'm still learning and may not have a response for everything yet. Please try asking something else.")
+            print("")
