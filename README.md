@@ -53,7 +53,7 @@ This project demonstrates:
 
 ---
 
-## 🖥️ Sample Interaction
+# 🖥️ Sample Interaction
 
 ```text
 You: What is artificial intelligence?  
@@ -70,4 +70,8 @@ Jarvis: The time is 03:45 PM.
 
 You: Weather in Paris  
 Jarvis: Showing weather for Paris.
+````
+## 🤝 Let's Connect
+
+If you're a recruiter or dev looking for someone who enjoys building practical Python tools—I'm open to connect!
 
